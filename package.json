@@ -8,12 +8,15 @@
   "private": false,
   "devDependencies": {
     "@types/node": "^16.11.12",
+    "@types/ramda": "types/npm-ramda#dist",
     "nodemon": "^2.0.15",
+    "ramda": "^0.27.1",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.3"
   },
   "scripts": {
     "events": "nodemon ./events/events.ts",
-    "fsm": "nodemon ./events/fsm.ts"
+    "fsm": "nodemon ./events/fsm.ts",
+    "grep": "nodemon ./pipeline/grep.ts"
   }
 }
