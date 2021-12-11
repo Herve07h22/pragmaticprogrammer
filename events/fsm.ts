@@ -1,9 +1,9 @@
 // Chapter 5 "Bend or break" p140
 
-type States = "look_for_string" | "in_string" | "copy_next_char";
+type StateNames = "look_for_string" | "in_string" | "copy_next_char";
 
 type State = {
-  state: States;
+  name: StateNames;
   currentString: string;
   allParsedStrings: string[];
 };
@@ -11,11 +11,12 @@ type State = {
 type Action = (initialState: State, char?: string) => State;
 
 type CharParser = {
-  [from in States]: {
-    [nextChar in string | "default"]: [States, Action];
+  [from in StateNames]: {
+    [nextChar in string | "default"]: [StateNames, Action];
   };
 };
 
+// Actions
 const ignore = (state: State) => state;
 const startNewString = (state: State) => ({ ...state, currentString: "" });
 const addChar = (state: State, char?: string) => ({
@@ -27,7 +28,15 @@ const finishString = (state: State) => ({
   allParsedStrings: state.allParsedStrings.concat(state.currentString),
 });
 
-const transitionsAndActions: CharParser = {
+// Core function of the machine
+const dispatch = (parser: CharParser) => (fromState: State, char: string) => {
+  const [nextStateName, action] =
+    parser[fromState.name][char] || parser[fromState.name]["default"];
+  return { ...fromState, ...action(fromState, char), name: nextStateName };
+};
+
+// Finite state machine description
+const stringParserInDoubleQuote: CharParser = {
   look_for_string: {
     '"': ["in_string", startNewString],
     default: ["look_for_string", ignore],
@@ -42,24 +51,21 @@ const transitionsAndActions: CharParser = {
   },
 };
 
-const dispatch = (fromState: State, char: string) => {
-  const [nextState, action] =
-    transitionsAndActions[fromState.state][char] ||
-    transitionsAndActions[fromState.state]["default"];
-  return { ...fromState, ...action(fromState, char), state: nextState };
-};
-
-var state: State = {
-  state: "look_for_string",
+const initialState: State = {
+  name: "look_for_string",
   currentString: "",
   allParsedStrings: [],
 };
+
+// Run it
+var state = initialState;
+const transition = dispatch(stringParserInDoubleQuote);
 
 const text =
   '"hello"  this is not a string "world" this is code; "!" "say /"good bye/"" and nothing else';
 
 for (let char of text) {
-  state = dispatch(state, char);
+  state = transition(state, char);
 }
 
 console.log("Strings found :");
