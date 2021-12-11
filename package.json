@@ -1,0 +1,19 @@
+{
+  "name": "pragmatic",
+  "version": "1.0.0",
+  "description": "Samples and katas from The pragmatic programmer book",
+  "main": "index.ts",
+  "author": "Camilab",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "@types/node": "^16.11.12",
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.3"
+  },
+  "scripts": {
+    "events": "nodemon ./events/events.ts",
+    "fsm": "nodemon ./events/fsm.ts"
+  }
+}
