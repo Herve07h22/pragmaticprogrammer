@@ -17,6 +17,7 @@
     "events": "nodemon ./events/events.ts",
     "fsm": "nodemon ./events/fsm.ts",
     "grep": "nodemon ./pipeline/grep.ts",
-    "reservation": "nodemon ./dependency_injection/validateReservationUsecase.spec.ts"
+    "reservation": "nodemon ./dependency_injection/validateReservationUsecase.spec.ts",
+    "realestate": "nodemon ./backpropagation/RealEstateModel.ts"
   }
 }
