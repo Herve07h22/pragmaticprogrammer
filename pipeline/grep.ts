@@ -14,7 +14,7 @@ Meanwhile, I use Ramda.
 */
 
 import * as fs from "fs";
-import { pipe } from "ramda"; 
+import { pipe } from "./pipe";
 
 const readFile: (filename: string) => string = (filename) => {
   console.log(filename);
@@ -37,7 +37,8 @@ const findPattern: (pattern: string) => (lines: string[]) => string[] =
   (pattern) => (lines) =>
     lines.filter((line) => line.includes(pattern)).map(truncateLine);
 
-// Wrapper for a function which could throw an error
+// Wrapper for a function which could throw an error.
+// So so you can set the boundaries of the error handler
 function callCanThrow<A, B>(fn: (p: A) => B, props: A) {
   try {
     return fn(props);
@@ -46,18 +47,13 @@ function callCanThrow<A, B>(fn: (p: A) => B, props: A) {
   }
 }
 
-
 const grep = (word: string, filename: string) =>
-    callCanThrow(pipe(
-        readFile, 
-        splitLines, 
-        findPattern(word)
-    ), filename);
+  callCanThrow(pipe(readFile, splitLines, findPattern(word)), filename);
 
 const resultOrError = grep("word", "./pipeline/test_grep.txt");
 
 if ("error" in resultOrError) {
-  console.log("Error :", resultOrError.error);
+  console.log("❌ Error :", resultOrError.error);
 } else {
-  console.log("Result :", resultOrError);
+  console.log("✅ Result :", resultOrError);
 }
