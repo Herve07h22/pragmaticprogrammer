@@ -1,18 +1,23 @@
 import { Estimator } from "./Estimator";
+import { math } from "./math";
 
 export function normalize(sells: Array<{ price: number; inputs: number[] }>) {
   const prices = sells.map((sell) => sell.price);
   const minPrice = Math.min(...prices);
   const maxPrice = Math.max(...prices);
+  const meanPrice = math.sum(prices) / prices.length;
+  console.log(`meanPrice: ${meanPrice}`);
   const delta = maxPrice - minPrice;
-
+  console.log(`delta: ${delta}`);
   return {
     minPrice,
     delta,
     normalizedSells: sells.map((sell) => ({
       inputs: sell.inputs,
-      price: (sell.price - minPrice) / delta,
+      price: (sell.price - meanPrice) / delta,
     })),
+    sells,
+    normalizedToPrintable: (x: number) => x * delta + meanPrice,
   };
 }
 

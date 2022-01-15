@@ -18,7 +18,7 @@ export class Layer {
     public learningRate: number
   ) {
     this.weights = math.matrix(
-      math.random([this.inputDimension, this.outputDimension], 0, 1)
+      math.random([this.inputDimension, this.outputDimension], -1, 1)
     );
   }
 
