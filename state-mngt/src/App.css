@@ -1,0 +1,46 @@
+.app {
+  text-align: center;
+}
+
+.app-header {
+  background-color: #282c34;
+  min-height: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  margin: 1rem;
+}
+.app-header a {
+  color: white;
+  text-decoration: none;
+}
+.app-header a:hover {
+  color: lightgreen;
+  text-decoration: none;
+}
+
+.container {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  align-items: center;
+}
+
+.card {
+  border: darkgrey solid 1px;
+  border-radius: 3px;
+  padding: 1rem;
+  width: 30%;
+  margin: 1rem;
+}
+
+.footer {
+  min-height: 10vh;
+  display: flex;
+  padding: 2rem;
+  align-items: center;
+}
