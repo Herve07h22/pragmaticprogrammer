@@ -26,7 +26,7 @@ function App() {
                 setCounter({ count: counter.count + 1, from: "App" })
               }
             >
-              Increment
+              Increment from App
             </button>
           </p>
         </div>
@@ -34,7 +34,12 @@ function App() {
         <CountButton id={1} />
         <CountButton id={2} />
       </main>
-      <footer>Camilab @2022 - see code</footer>
+      <footer>
+        Camilab @2022 - see{" "}
+        <a href="https://github.com/Herve07h22/pragmaticprogrammer/tree/main/state-mngt">
+          code
+        </a>
+      </footer>
     </div>
   );
 }
