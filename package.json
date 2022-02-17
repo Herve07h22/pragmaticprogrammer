@@ -22,6 +22,8 @@
     "realestate2": "nodemon ./gradient-backpropagation/layer.spec.ts"
   },
   "dependencies": {
-    "mathjs": "^10.0.2"
+    "mathjs": "^10.0.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   }
 }

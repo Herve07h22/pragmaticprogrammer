@@ -1,4 +1,5 @@
 import "./App.css";
+import { Button } from "./component/button";
 import { CountButton } from "./component/CountButton";
 import { storedCounter } from "./store/counter";
 import { useAtom } from "./store/store";

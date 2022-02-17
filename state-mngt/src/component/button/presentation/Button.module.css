@@ -1,0 +1,8 @@
+.large {
+  width: 200px;
+  padding: 1rem;
+  background-color: blueviolet;
+  border-radius: 5px;
+  color: white;
+  font-size: 1.5rem;
+}
