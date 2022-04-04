@@ -19,7 +19,8 @@
     "grep": "nodemon ./pipeline/grep.ts",
     "reservation": "nodemon ./dependency_injection/validateReservationUsecase.spec.ts",
     "realestate": "nodemon ./simple-backpropagation/RealEstateModel.ts",
-    "realestate2": "nodemon ./gradient-backpropagation/layer.spec.ts"
+    "realestate2": "nodemon ./gradient-backpropagation/layer.spec.ts",
+    "enum": "nodemon ./symbols/Enum.ts"
   },
   "dependencies": {
     "mathjs": "^10.0.2",
