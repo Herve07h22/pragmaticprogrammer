@@ -7,13 +7,17 @@
   "license": "MIT",
   "private": false,
   "devDependencies": {
+    "@types/jest": "^27.5.0",
     "@types/node": "^16.11.12",
     "@types/ramda": "types/npm-ramda#dist",
+    "jest": "^28.1.0",
     "nodemon": "^2.0.15",
+    "ts-jest": "^28.0.1",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.3"
   },
   "scripts": {
+    "fraction":"jest fraction",
     "events": "nodemon ./events/events.ts",
     "fsm": "nodemon ./events/fsm.ts",
     "grep": "nodemon ./pipeline/grep.ts",
