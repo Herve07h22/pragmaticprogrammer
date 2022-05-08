@@ -1,17 +1,20 @@
 
 export class Fraction {
-    private numerateur:number;
-    private denominateur:number;
-    constructor(numerateur:number, denominateur?:number) {
-        this.numerateur = numerateur
+    constructor(private numerateur:number, private denominateur:number) {
+    }
+
+    static of (numerateur:number | Fraction, denominateur?:number):Fraction {
+        if (numerateur instanceof Fraction) {
+            return Fraction.of(numerateur.numerateur, numerateur.denominateur)
+        }
         if (denominateur === 0) throw new Error("Dénominateur zéro")
-        this.denominateur = denominateur || 1
-        this.numerateur = numerateur
+        return new Fraction(numerateur, denominateur || 1)
     }
     add (terme:Fraction) {
         if (terme.numerateur === 0) return this.reduire();
+        if (this.numerateur === 0) return Fraction.of(terme).reduire()
         if (terme.denominateur === this.denominateur) return new Fraction(this.numerateur+terme.numerateur, this.denominateur).reduire()
-        return new Fraction(this.numerateur*terme.denominateur+terme.numerateur*this.denominateur, this.denominateur*terme.denominateur).reduire()
+        return Fraction.of(this.numerateur*terme.denominateur+terme.numerateur*this.denominateur, this.denominateur*terme.denominateur).reduire()
     }
     reduire() {
         for (let diviseur=2; diviseur<=Math.min(this.numerateur, this.denominateur); diviseur++) {
